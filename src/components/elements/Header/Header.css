@@ -43,7 +43,7 @@
   float: right;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 400px) {
   .rmdb-header-content {
     max-width: 1280px;
     min-height: 0px;
