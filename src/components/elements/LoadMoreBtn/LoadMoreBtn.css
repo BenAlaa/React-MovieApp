@@ -1,5 +1,6 @@
 .rmdb-loadmorebtn {
-  background: #16d47b;
+  background: rgb(30,49,144);
+  background: linear-gradient(90deg, rgba(30,49,144,1) 0%, rgba(178,49,152,1) 100%);
   width: 100%;
   min-height: 50px;
   text-align: center;
