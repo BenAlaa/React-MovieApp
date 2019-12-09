@@ -44,7 +44,7 @@ class Home extends Component {
         .then(result => result.json())
         .then(result => {
             const movies =[...this.state.movies, ...result.results];
-            const heroImage = this.state.heroImage || result.results[0];
+            const heroImage = this.state.heroImage || result.results[13];
             const loading = false;
             const currentPage = result.page;
             const totalPages = result.total_pages;

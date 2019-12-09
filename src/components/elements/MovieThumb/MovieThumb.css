@@ -4,6 +4,14 @@
   transition: all 0.3s;
   object-fit: cover;
   border-radius: 20px;
+  box-shadow: 10px 10px 30px 5px #3335366b;
+}
+.rmdb-moviethumb img:hover{
+    box-shadow: 10px 10px 30px 20px #3335366b;
+    transform: scale(1.1);
+    transition-duration: 500;
+    cursor: pointer;
+
 }
 
 .clickable {
