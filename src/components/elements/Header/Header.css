@@ -19,6 +19,8 @@
 .rmdb-header-brand{
   max-width: 250px;
   cursor: pointer;
+  text-decoration: none;
+
 }
 .rmdb-header-brand:active{
   text-decoration: none;
@@ -28,6 +30,7 @@
   font-size: 60px;
   margin-right: 10px;
   margin-top: 10px;
+  text-decoration: none;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: rgb(112, 38, 100);
 }
@@ -35,6 +38,7 @@
   font-size: 30px;
   margin-top: 10px;
   font-family: fantasy;
+  text-decoration: none;
   color: rgb(255, 255, 254);
 }
 

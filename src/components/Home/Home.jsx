@@ -52,7 +52,6 @@ class Home extends Component {
             const loading = false;
             const currentPage = result.page;
             const totalPages = result.total_pages;
-            console.log('randome',this.getRandomInt(0,result.total_pages));
             this.setState({movies,heroImage,loading,currentPage,totalPages});
 
         });
