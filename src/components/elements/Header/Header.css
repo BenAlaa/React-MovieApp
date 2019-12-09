@@ -1,7 +1,8 @@
 .rmdb-header {
   width: 100%;
   height: auto;
-  background: #1c1c1c;
+  background: rgb(28, 28, 28);
+  /* background:  linear-gradient(90deg, rgb(28, 28, 28) 40%, rgba(178,49,152,1) 100%); */
   padding: 0 20px;
   box-sizing: border-box;
 }
