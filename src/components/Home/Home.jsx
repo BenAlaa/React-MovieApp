@@ -50,14 +50,23 @@ class Home extends Component {
         }
         this.fetchItems(endpoint);
     }
-    render() { 
+    render() {
         return ( 
+            
             <div className="rmdb-home">
-                <HeroImage />
-                <SearchBar />
-                <FourColGrid />
-                <Spinner />
-                <LoadMoreBtn />
+                {this.state.heroImage && <div>
+                    <HeroImage  
+                        image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${this.state.heroImage.backdrop_path}`}
+                        title={this.state.heroImage.original_title}
+                        text={this.state.heroImage.overview}
+                        />
+                    <SearchBar />
+                </div>}
+                <div>
+                    <FourColGrid />
+                    <Spinner />
+                    <LoadMoreBtn />
+                </div>
             </div>
          );
     }
