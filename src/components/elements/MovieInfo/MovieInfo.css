@@ -82,16 +82,20 @@
 
 meter::-webkit-meter-bar {
   background: #fff;
+  border-radius: 10px;
   width: 150px;
 }
 meter::-webkit-meter-optimum-value {
   background: linear-gradient(to bottom, #16d47b) !important;
+  border-radius: 10px;
 }
 meter::-webkit-meter-suboptimum-value {
   background: linear-gradient(to bottom, #fbb450) !important;
+  border-radius: 10px;
 }
 meter::-webkit-meter-even-less-good-value {
   background: linear-gradient(to bottom, #ee5f5b) !important;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 1000px) {
