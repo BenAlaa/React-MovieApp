@@ -22,32 +22,37 @@ class Home extends Component {
         const endpoint =`${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
         this.fetchItems(endpoint);
     }
-    searchItems = (searchItem) => {
-        console.log(searchItem);
+    searchItems = (searchTerm) => {
         let endpoint = '';
         this.setState({
-            movies: [],
-            loading: true,
-            searchItem
-        });
-
-        if (searchItem === '') {
-            endpoint =`$${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+          movies: [],
+          loading: true,
+          searchItem: searchTerm
+        })
+    
+        if (searchTerm === "") {
+          endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
         } else {
-            endpoint =`$${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&query=${searchItem}`;
+          endpoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}`;
         }
+        this.fetchItems(endpoint);
+      }
+    getRandomInt = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
     }
-
 
     fetchItems = (endpoint) => {
         fetch(endpoint)
         .then(result => result.json())
         .then(result => {
             const movies =[...this.state.movies, ...result.results];
-            const heroImage = this.state.heroImage || result.results[13];
+            const heroImage = this.state.heroImage || result.results[this.getRandomInt(0,20)];
             const loading = false;
             const currentPage = result.page;
             const totalPages = result.total_pages;
+            console.log('randome',this.getRandomInt(0,result.total_pages));
             this.setState({movies,heroImage,loading,currentPage,totalPages});
 
         });
@@ -86,16 +91,19 @@ class Home extends Component {
                         return <MovieThumb
                                     key={i}
                                     clickable={true}
-                                    image={element.poster_path? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}`: '../../Assets/Images/no_image.jpg'}
+                                    image={element.poster_path? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}`: './images/no_image.jpg'}
                                     movieId={element.id}
                                     movieName={element.original_title} 
                         ></MovieThumb>
                     })}
-                    </FourColGrid>
+                    </FourColGrid> 
+                    {this.state.loading && <Spinner/>}
+                    {
+                        (this.state.currentPage <= this.state.totalPages && !this.state.loading) && 
+                        <LoadMoreBtn text="Load More"onClick={this.loadMoreItems} />
+                    }
                     
                 </div>
-                <Spinner />
-                <LoadMoreBtn />
             </div>
          );
     }

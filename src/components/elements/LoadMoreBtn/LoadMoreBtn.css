@@ -1,13 +1,16 @@
 .rmdb-loadmorebtn {
+  margin:auto;
+  margin-top: 100px;
   background: rgb(30,49,144);
   background: linear-gradient(90deg, rgba(30,49,144,1) 0%, rgba(178,49,152,1) 100%);
-  width: 100%;
+  width: 65vw;
   min-height: 50px;
   text-align: center;
   color: #fff;
   cursor: pointer;
   transition: all 0.3s;
-  border-radius: 20px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 30px 5px #3335366b;
 }
 
 .rmdb-loadmorebtn p {
@@ -17,5 +20,7 @@
 }
 
 .rmdb-loadmorebtn:hover {
-  opacity: 0.8;
+  /* opacity: 0.8; */
+  box-shadow: 10px 10px 30px 15px #3335366b;
+
 }
