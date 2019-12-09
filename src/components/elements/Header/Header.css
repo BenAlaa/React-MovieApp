@@ -16,6 +16,13 @@
   box-sizing: border-box;
   overflow: hidden;
 }
+.rmdb-header-brand{
+  max-width: 250px;
+  cursor: pointer;
+}
+.rmdb-header-brand:active{
+  text-decoration: none;
+}
 .header-title-R{
   margin-left: 20px;
   font-size: 60px;
