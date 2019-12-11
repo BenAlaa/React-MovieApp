@@ -24,40 +24,33 @@ class Movie extends Component {
         this.fetchItems(endpoint);
     }
 
-    fetchItems = (endpoint) => {
-        // ES6 destructuring the props
+    fetchItems = async (endpoint) => {
         const { movieId } = this.props.match.params;
+        try {
+            const result = await (await fetch(endpoint)).json();
+            if (result.status_code) {
+                 // If we don't find any movie
+                 this.setState({ loading: false });
+            } else {
+                this.setState({ movie: result });
+                let creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+                const creditsResult = await (await fetch(creditsEndpoint)).json();
+                const directors = creditsResult.crew.filter((member) => member.job === "Director");
+                this.setState({
+                    actors: creditsResult.cast,
+                    directors,
+                    loading: false
+                }, () => {
+                    localStorage.setItem(`${movieId}`, JSON.stringify(this.state));
+                })
+            }
 
-        fetch(endpoint)
-            .then(result => result.json())
-            .then(result => {
-                console.log('result: ', result);
-                if (result.status_code) {
-                    // If we don't find any movie
-                    this.setState({ loading: false });
-                } else {
-                    this.setState({ movie: result }, () => {
-                        // ... then fetch actors in the setState callback function
-                        let endpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
-                        fetch(endpoint)
-                            .then(result => result.json())
-                            .then(result => {
+        } catch (err) {
+            console.log('Unable to fetch data , Something wrong happen')
+        }
 
-                                const directors = result.crew.filter((member) => member.job === "Director");
-
-                                this.setState({
-                                    actors: result.cast,
-                                    directors,
-                                    loading: false
-                                }, () => {
-                                    localStorage.setItem(`${movieId}`, JSON.stringify(this.state));
-                                })
-                            })
-                    })
-                }
-            })
-            .catch(error => console.error('Error:', error))
     }
+    
 
     render() {
         const { movieName } = this.props.location;
